@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            padding-bottom: 100px; /* Footer icin yer birakir */
+        }
+
+        .info {
+            position: absolute;
+            bottom: 120px;
+            left: 20px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .info a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .info a:hover {
+                    text-decoration: underline;
+                }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        legend {
+            font-weight: bold;
+            color: #333;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            display: block;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        .score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .user {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            overflow: auto;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="info">
+    <p><strong>Proje Linki:</strong> <a href=""></a></p>
+    <p><strong>Proje Bulut Dosyasi:</strong> <a href=""></a></p>
+    </div>
+
+    <div class="user">User: {{ username }}</div>
+    <div class="score">En Yuksek Skor: {{ best_score }}</div>
+    <br />
+    <h1>Quiz</h1>
+
+    <form method="post">
+        <br>
+
+        {% for question in questions %}
+        <fieldset>
+            <legend>{{ question[1] }}</legend>
+
+            {% if question[2] != '' %}
+            <pre><code class="language-js">{{ question[2] }}</code></pre>
+            {% endif %}
+
+            <input type="radio" id="q{{ question[0] }}_1" name="question{{ question[0] }}" value="{{ question[3] }}">
+            <label for="q{{ question[0] }}_1">{{ question[3] }}</label><br>
+            <input type="radio" id="q{{ question[0] }}_2" name="question{{ question[0] }}" value="{{ question[4] }}">
+            <label for="q{{ question[0] }}_2">{{ question[4] }}</label><br>
+            <input type="radio" id="q{{ question[0] }}_3" name="question{{ question[0] }}" value="{{ question[5] }}">
+            <label for="q{{ question[0] }}_3 }}">{{ question[5] }}</label><br>
+            <input type="radio" id="q{{ question[0] }}_4" name="question{{ question[0] }}" value="{{ question[6] }}">
+            <label for="q{{ question[0] }}_4 }}">{{ question[6] }}</label>
+        </fieldset>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <footer>
+        Made By Kerem Ozakca
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
+</html>
